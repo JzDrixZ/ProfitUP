@@ -1,0 +1,488 @@
+/*
+ * Arquivo: style.css
+ * Tema: Blog Criativo - Design moderno e animado para Profit Up.
+ *
+ * Este CSS estiliza um blog com um layout em blocos, tipografia atraente e
+ * uma paleta de cores neutra com um ponto de destaque vibrante.
+ *
+ * Inclui animações fluidas para uma experiência de usuário mais dinâmica.
+ * Use as variáveis CSS no ':root' para mudar facilmente as cores e fontes.
+ * Cada seção está comentada para facilitar a compreensão e modificação.
+ */
+
+/* ==================================== */
+/* 1. Importação de Fontes e Variáveis  */
+/* ==================================== */
+
+/* Importação de fontes do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Poppins:wght@500;600;700&display=swap');
+
+/* Variáveis CSS para facilitar a modificação de cores e fontes. */
+:root {
+    --cor-primaria: #28a745; /* Verde mais vibrante para destaque (Profit Up) */
+    --cor-primaria-hover: #218838; /* Tom mais escuro para hover */
+    --cor-secundaria: #f8f9fa; /* Cinza muito claro / quase branco para fundos */
+    --cor-fundo-destaque: #ffffff; /* Branco puro para fundos de cards/seções */
+    --cor-texto-escuro: #343a40; /* Texto principal escuro (quase preto) */
+    --cor-texto-claro: #6c757d; /* Texto secundário ou em fundos claros */
+    --cor-texto-meta: #adb5bd; /* Cor para datas, autores, etc. */
+    --cor-borda: #dee2e6; /* Bordas sutis */
+
+    --font-principal: 'Montserrat', sans-serif;
+    --font-titulos: 'Poppins', sans-serif;
+}
+
+/* ==================================== */
+/* 2. Reset Básico e Estilos Globais    */
+/* ==================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-principal);
+    line-height: 1.6;
+    color: var(--cor-texto-escuro);
+    background-color: var(--cor-secundaria);
+    scroll-behavior: smooth;
+}
+
+a {
+    text-decoration: none;
+    color: var(--cor-primaria);
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--cor-primaria-hover);
+}
+
+ul {
+    list-style: none;
+}
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ==================================== */
+/* 3. Seção Hero (Destaque Principal)   */
+/* ==================================== */
+
+.hero {
+    background-color: var(--cor-fundo-destaque);
+    padding: 150px 20px;
+    text-align: center;
+    border-bottom: 1px solid var(--cor-borda);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+    margin-bottom: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 70vh;
+    overflow: hidden;
+}
+
+.hero-content {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.hero h1 {
+    font-family: var(--font-titulos);
+    font-size: 4.5rem;
+    color: var(--cor-texto-escuro);
+    margin-bottom: 30px;
+    line-height: 1.1;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.hero p {
+    font-family: var(--font-principal);
+    font-size: 1.4rem;
+    color: var(--cor-texto-claro);
+    margin-bottom: 25px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 300;
+}
+
+.hero .subtitle {
+    font-size: 1.2rem;
+    color: var(--cor-texto-meta);
+    margin-bottom: 0;
+}
+
+/* ==================================== */
+/* 4. Estilos Gerais para Seções        */
+/* ==================================== */
+
+section {
+    padding: 80px 20px;
+    background-color: var(--cor-fundo-destaque);
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    margin-bottom: 60px;
+    /* Remover as propriedades de opacidade e transformação daqui se quiser que tudo apareça por padrão */
+    /* opacity: 0; */
+    /* transform: translateY(30px); */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Classe para esconder elementos inicialmente para animação (adicionada via JS) */
+.hide-initially {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+/* Estado visível para elementos animados (adicionado via JS) */
+.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+section h2 {
+    font-family: var(--font-titulos);
+    font-size: 3.2rem;
+    text-align: center;
+    color: var(--cor-texto-escuro);
+    margin-bottom: 60px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+/* ==================================== */
+/* 5. Seção de Artigos (Grade de Posts)*/
+/* ==================================== */
+
+.artigos-recente {
+    padding-top: 80px;
+    background-color: var(--cor-secundaria);
+    box-shadow: none;
+    border-radius: 0;
+    margin-bottom: 0;
+}
+
+.artigos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
+    justify-content: center;
+}
+
+.artigo-card {
+    background-color: var(--cor-fundo-destaque);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Animação para cards individuais (novo) */
+.animated-item {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.animated-item.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+.artigo-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+.artigo-card img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.95);
+    transition: filter 0.3s ease;
+}
+
+.artigo-card:hover img {
+    filter: brightness(1.05) saturate(1.1);
+}
+
+.card-content {
+    padding: 30px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-content h3 {
+    font-family: var(--font-titulos);
+    font-size: 1.8rem;
+    color: var(--cor-texto-escuro);
+    margin-bottom: 12px;
+    line-height: 1.2;
+}
+
+.card-content .card-meta {
+    font-size: 0.95rem;
+    color: var(--cor-texto-meta);
+    margin-bottom: 18px;
+}
+
+.card-content p {
+    font-size: 1.05rem;
+    color: var(--cor-texto-claro);
+    margin-bottom: 25px;
+    flex-grow: 1;
+}
+
+.read-more {
+    font-weight: 700;
+    color: var(--cor-primaria);
+    align-self: flex-start;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.read-more:hover {
+    transform: translateX(8px);
+    color: var(--cor-primaria-hover);
+}
+
+/* ==================================== */
+/* 6. Seções Sobre e Contato            */
+/* ==================================== */
+
+.sobre-blog, .contato-blog {
+    padding: 100px 20px;
+    text-align: center;
+    background-color: var(--cor-fundo-destaque);
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    margin-top: 80px;
+    margin-bottom: 80px;
+}
+
+.sobre-blog h2, .contato-blog h2 {
+    font-family: var(--font-titulos);
+    font-size: 3rem;
+    color: var(--cor-texto-escuro);
+    margin-bottom: 40px;
+    text-transform: uppercase;
+}
+
+.sobre-blog p, .contato-blog p {
+    font-size: 1.2rem;
+    color: var(--cor-texto-claro);
+    max-width: 850px;
+    margin: 0 auto 30px auto;
+}
+
+.contato-blog form {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: 0 auto;
+    gap: 20px;
+}
+
+.contato-blog input[type="text"],
+.contato-blog input[type="email"],
+.contato-blog textarea {
+    padding: 18px;
+    border: 1px solid var(--cor-borda);
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-family: var(--font-principal);
+    color: var(--cor-texto-escuro);
+    background-color: #fcfcfc;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contato-blog input[type="text"]:focus,
+.contato-blog input[type="email"]:focus,
+.contato-blog textarea:focus {
+    border-color: var(--cor-primaria);
+    box-shadow: 0 0 10px rgba(40, 167, 69, 0.3);
+    outline: none;
+}
+
+.contato-blog textarea {
+    resize: vertical;
+    min-height: 180px;
+}
+
+.btn.primary-btn {
+    padding: 18px 40px;
+    font-size: 1.2rem;
+    border-radius: 8px;
+}
+
+/* ==================================== */
+/* 7. Rodapé (Footer)                   */
+/* ==================================== */
+
+footer {
+    background-color: var(--cor-texto-escuro);
+    color: #ffffff;
+    text-align: center;
+    padding: 40px 20px;
+    font-size: 1rem;
+    font-weight: 300;
+    border-top: 1px solid var(--cor-borda);
+    /* opacity: 0; */
+    /* transform: translateY(30px); */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* ==================================== */
+/* 8. Animações CSS (Keyframes)         */
+/* ==================================== */
+
+/* Animação de Fade-in e Slide-up */
+@keyframes fadeInSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==================================== */
+/* 9. Responsividade (Mobile-First)     */
+/* ==================================== */
+
+@media (max-width: 768px) {
+    main {
+        padding: 0 15px;
+    }
+
+    .hero {
+        padding: 100px 15px;
+        min-height: 50vh;
+    }
+
+    .hero h1 {
+        font-size: 3rem;
+    }
+
+    .hero p {
+        font-size: 1.2rem;
+    }
+
+    .hero .subtitle {
+        font-size: 1rem;
+    }
+
+    section {
+        padding: 60px 15px;
+        margin-bottom: 40px;
+    }
+
+    section h2 {
+        font-size: 2.5rem;
+        margin-bottom: 40px;
+    }
+
+    .artigos-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .artigo-card img {
+        height: 220px;
+    }
+
+    .card-content h3 {
+        font-size: 1.5rem;
+    }
+
+    .card-content p {
+        font-size: 1rem;
+    }
+
+    .read-more {
+        font-size: 0.95rem;
+    }
+
+    .sobre-blog p, .contato-blog p {
+        font-size: 1.05rem;
+    }
+
+    .contato-blog input, .contato-blog textarea {
+        padding: 15px;
+        font-size: 1rem;
+    }
+
+    .btn.primary-btn {
+        padding: 15px 30px;
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        padding: 60px 10px;
+        min-height: 40vh;
+    }
+
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .hero .subtitle {
+        font-size: 0.9rem;
+    }
+
+    section {
+        padding: 40px 10px;
+        margin-bottom: 30px;
+    }
+
+    section h2 {
+        font-size: 2rem;
+        margin-bottom: 30px;
+    }
+
+    .artigo-card img {
+        height: 180px;
+    }
+
+    .card-content h3 {
+        font-size: 1.3rem;
+    }
+
+    .card-content p {
+        font-size: 0.95rem;
+    }
+
+    .sobre-blog p, .contato-blog p {
+        font-size: 0.95rem;
+    }
+
+    .contato-blog input, .contato-blog textarea {
+        padding: 12px;
+        font-size: 0.9rem;
+    }
+
+    .btn.primary-btn {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+}

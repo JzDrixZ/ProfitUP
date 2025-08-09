@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Neumorphic Preloader</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1,viewport-fit=cover"><link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Hind&amp;display=swap'><link rel="stylesheet" href="/Extras/loading.css">
+
+</head>
+<body>
+<main>
+	<div class="preloader">
+		<div class="preloader__square"></div>
+		<div class="preloader__square"></div>
+		<div class="preloader__square"></div>
+		<div class="preloader__square"></div>
+	</div>
+	<div class="status"> Carregando a página, aguarde<span class="status__dot">.</span><span class="status__dot">.</span><span class="status__dot">.</span></div>
+</main>
+<script>
+    // Define a URL para a qual você quer redirecionar
+    const redirectURL = "/Extras/startpage.html"; // Mude para o nome do seu arquivo HTML ou URL
+
+    // Redireciona após 12 segundos (12000 milissegundos)
+    setTimeout(function() {
+        window.location.href = redirectURL;
+    }, 5000);
+</script>
+
+</body>
+</html>
+    
